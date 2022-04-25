@@ -9,21 +9,8 @@ const app = express();
 // base de datos
 dbConnection();
 
-const whiteList = [ process.env.URL_FRONTEND ];
-
-const corsOption = {
-    origin: (origin, callback) => {
-        const existe = whiteList.some( dominio => dominio === origin );
-        if (existe) {
-            callback(null, true);
-        } else {
-            callback(new Error('No permitido por CORS'));
-        }
-    }
-}
-
 // CORS
-app.use(cors(corsOption));
+app.use(cors());
 
 // Directorio publico
 app.use( express.static('public') );
